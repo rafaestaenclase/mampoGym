@@ -1,0 +1,43 @@
+	{% extends 'layout.twig' %}
+
+	{% block style %}
+		<link rel="stylesheet" type="text/css" href="./view/css/index.css">
+
+		<style>
+		.carousel {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		p {
+			text-align: center;
+		}
+
+		.red { 
+			color: #6d0a0a;
+		}
+
+		</style>
+	{% endblock %}
+
+	{% block content %}
+			<div id="carouselExampleSlidesOnly" class="col-sm-12 col-lg-6 carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+		    		<div class="carousel-item active">
+		      			<img class="d-block w-100" src="img/server/c1.png" alt="First slide">
+		    		</div>
+		    		<div class="carousel-item">
+			      		<img class="d-block w-100" src="img/server/c2.png" alt="Second slide">
+			    	</div>
+			    	<div class="carousel-item">
+			      		<img class="d-block w-100" src="img/server/c3.png" alt="Third slide">
+					</div>
+				</div>
+			</div>
+			<div class="w-100"></div>
+			<div>
+				<p><span class="black">Club de boxeo y de deporte de contacto desde el año 2006.<br></span>
+				<span class="red">Clases de diferentes artes marciales.</span><br>
+				<span class="black">Boxeo, Jiu-jitsu, MMA, Kick Boxing y Grapling.</span></p>
+			</div>
+	{% endblock %}

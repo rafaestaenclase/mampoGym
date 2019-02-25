@@ -1,0 +1,64 @@
+	{% extends 'layout.twig' %}
+
+	{% block style %}
+		<link rel="stylesheet" type="text/css" href="./view/css/login.css">
+	{% endblock %}
+
+	{% block nav %}
+
+	{% endblock %}
+
+	{% block content %}
+		<div class="col-12">
+			<div id="divLogFrom" class="row justify-content-start">
+				<form id="loginForm" class="col-8 form-inline rounded float-right" onsubmit="return ajax_listen(this.id, 'index.php?controller=Profile&action=loginValidate', errorLogin, true)">
+				  <div class="form-group mb-2">
+				    <input type="text" name="nickname" class="form-control-plaintext" placeholder="Nickname">
+				  </div>
+				  <div class="form-group mx-sm-3 mb-2">
+				    <label for="inputPassword2" class="sr-only">Password</label>
+				    <input type="password" name="password" class="form-control" placeholder="Password">
+				  </div>
+				  
+				  <button id="logSubmit" type="submit" name="login" class="btn btn-primary mb-2">Login</button>
+				  <div class="form-group">
+		             	<div id="msg" class="alert"><i class="fas"></i><span></span></div>
+		          </div>
+				</form>
+			</div>
+
+			<div id="divRegFrom" class="row justify-content-center  mt-5">
+				<form id="logForm" class="col-6 justify-content-center" method="POST" action="index.php" onsubmit="return verifyData(nickname, password)">
+					<h3>Registry</h3>
+					<div class="form-group">
+						<input type="text" name="nickname" class="form-control" placeholder="Nickname">
+					</div>
+					<div class="form-group">
+					    <input type="password" name="password" class="form-control" placeholder="Password">
+					</div>
+						<button type="submit" name="registry" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+
+
+		<script>
+			function verifyData(nickname, password){
+				var patt = /[a-z]{3,}/;
+				if(patt.test(nickname.value)){
+					var patt = /(?=.{5,})/;
+					if(patt.test(password.value)){
+						return true;
+					}else{
+						return false;
+					}
+				}else{
+					return false;
+				}
+				
+				
+			}
+		</script>
+	{% endblock %}
+
+				

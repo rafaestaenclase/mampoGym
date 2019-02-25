@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<script src="js/main.js"></script>
+	<link rel="icon" type="image/ico" href="img/server/icon.ico">
+	<link rel="stylesheet" type="text/css" href="./view/css/bootstrap.css">
+	<title></title>
+	<style type="text/css">
+		
+		*{
+			margin: 0px;
+			padding: 0px;
+			font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+		}
+
+		body{
+			background-image: url("img/server/background.png") no-repeat 0 50%;
+		}
+
+		header{
+
+		}
+
+		.red{
+			color: #6d0a0a;
+		}
+		
+		nav{
+			background-color: #ff0000;
+		}
+
+		ul {
+		  list-style-type: none;
+		  margin: 0 auto;
+		  padding: 0;
+		  overflow: hidden;
+		  background-color: transparent;
+		  width: 100%;
+		}
+
+		li {
+		  float: left;
+		  width: 25%;
+		}
+
+		.nav a {
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		  color: white;
+		}
+
+		.navbar-toggler{
+			background-color: white;
+		}
+
+	</style>
+	{% block style %}
+	{% endblock %}
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="header row justify-content-center"><h1>MAMPO<span class="red">GYM</span></h1></div>
+		<div class="nav row d-flex justify-content-center">
+			<nav class="navbar navbar-expand-sm col-sm-12 col-lg-6">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			  <ul class="navbar-nav mr-auto">
+			  	<li class="nav-item">
+			      <a class="nav-link" href="index.php">MAMPOGYM</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="index.php?controller=Profile&action=runProfile">EVENTOS</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="index.php?controller=Profile&action=runProfile">EQUIPO</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="index.php?controller=Profile&action=runProfile">CONTACTO</a>
+			    </li>
+			  </ul>
+			</div>
+			</nav>
+		</div>
+		<div class="content row justify-content-center">
+			{% block content %}
+			{% endblock %}
+		</div>
+		<div class="footer row">Rafael Hernández</div>
+		
+	</div>
+
+	{# SCRIPT #}
+	<script type="text/javascript" src="./view/js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="./view/js/bootstrap.js"></script>
+</body>
+</html>

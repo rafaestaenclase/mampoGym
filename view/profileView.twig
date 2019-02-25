@@ -1,0 +1,73 @@
+	{% extends 'layout.twig' %}
+
+	{% block style %}
+		<link rel="stylesheet" type="text/css" href="./view/css/profile.css">
+	{% endblock %}
+	
+	{% block content %}
+
+		<div class="section col-12">
+			<div>
+				<div class="row thumbnail">
+					<img src="{{profile.photo}}">
+				</div>
+				<div class="w-100"></div>
+				<div class="row justify-content-center">
+					<h3>{{profile.nickname}}</h3>
+				</div>
+
+				
+					
+			</div>
+			<div id="posts" class="row justify-content-center">
+				{% if myProfile is defined %}
+					{% if myProfile != true %}
+						{% if isFollow != true %}
+							<a href="index.php?controller=Follow&action=followByNickname&nickname={{profile.nickname}}">Follow</a>
+						{% else %}
+							<a href="index.php?controller=Follow&action=unFollowByNickname&nickname={{profile.nickname}}">Unfollow</a>
+						{% endif %}
+					{% else %}
+						<div class="w-100"></div>
+						Your Posts
+						<div class="w-100"></div>
+					{% endif %}
+				{% else %}
+					<a class="nav-link" href="index.php?action=logOut">LogOut</a>
+					<form method="post" action="index.php?action=updateProfilePhoto" enctype="multipart/form-data">
+						<input type="file" name="archive">
+			            <input type="submit" name="">
+					</form>
+					<div class="w-100"></div>
+					<h3>Your Posts</h3>
+					<div class="w-100"></div>
+				{% endif %}
+
+
+				<div class="section col-sm-12 col-lg-6">
+				{% for publication in publications %}
+					
+						<div class="row posts">
+						<div class="col-9 col-md-10">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+								<strong><a href="index.php?action=runProfileByNickname&nickname={{publication.nickname}}">{{publication.nickname}}</a></strong> <span class="text-muted">{{publication.datePost}}</span>
+								</div>
+								<div class="panel-body">
+									<a href="index.php?controller=Post&action=runPost&idPost={{publication.id}}&nickname={{publication.nickname}}">{{publication.title}}</a>
+									<a class="category" href="index.php?action=searchByCategory&nameCategory={{publication.category}}">{{publication.category}}</a>
+								</div><!-- /panel-body -->
+							</div><!-- /panel panel-default -->
+						</div><!-- /col-sm-5 -->
+					</div><!-- /row -->
+					
+					
+				{% else %}
+					<div>
+					NO HAY PUBLICACIONES
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endblock %}
