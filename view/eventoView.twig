@@ -1,0 +1,20 @@
+	{% extends 'layout.twig' %}
+
+	{% block content %}
+
+		<div class="col-12 ml-5 mt-3 red">EVENTOS</div>
+		<div class="row justify-content-center">
+			{% for evento in eventos%}
+			<div class="card" style="width: 18rem;">
+			  <div class="card-body">
+			    <h5 class="card-title">{{evento.nombre}}</h5>
+			    <p class="card-text small">{{evento.fecha}}</p>
+			    <p class="card-text">LUGAR: {{evento.lugar}}</p>
+			    <p class="card-text">PRECIO: {{evento.precio}}€</p>
+			    <a href="#" class="btn btn-primary">Go somewhere</a>
+			  </div>
+			  <img class="card-img-top" src="{{evento.foto}}" alt="Card image cap">
+			</div>
+			{% endfor %}
+		</div>
+	{% endblock %}
