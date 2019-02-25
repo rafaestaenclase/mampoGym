@@ -1,13 +1,7 @@
 <?php
 	require_once "General.php";
-	class Post extends General
+	class Equipo extends General
 	{
-		private $id;
-		private $header;
-		private $rawData;
-		private $datePost;
-		private $idProfile;
-		private $idCategory;
 
 		public function __construct($connection){
         	parent::__construct($connection);
@@ -15,8 +9,7 @@
 
 
 		function getAll(){
-			$con = $this->connection->connect();
-			$con = $con->prepare("SELECT * FROM post");
+			$con = $this->getConnection()->prepare("SELECT * FROM integrante");
 	        $con->execute();
 	        $resul = $con->fetchAll();
 	        $this->conection = null;

@@ -7,7 +7,6 @@
 
 .background{
 	background-image: url('../img/background.png');
-	background-repeat: no-repeat, repeat;
 	position: absolute;
 	background-size: cover;
     top:0px;

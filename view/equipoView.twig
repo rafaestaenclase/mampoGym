@@ -1,0 +1,44 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+	<style type="text/css">
+
+		.card{
+			border:none;
+			height: 8rem;
+			width: 8rem;
+		}
+
+		.card-body{
+			padding: 0px;
+		}
+
+		.card-title{
+			margin: 0px;
+			padding: 0px;
+		}
+
+		.card img {
+		  object-fit:cover;
+		  object-position: center;
+		  width: 8rem;
+		  height: 8rem;
+		  margin-bottom: 0.5rem;
+		  display: inline-block;
+		  border-radius: 50%;
+		}
+	</style>
+
+	<div class="col-12 ml-5 mt-3 red">EQUIPO</div>
+	<div class="row justify-content-center">
+		{% for integrante in equipo%}
+		<div align="center" class="card m-3">
+		  <img class="card-img-top" src="{{integrante.foto}}" alt="No se encontró la imágen">
+		  <div class="card-body">
+		    <h6 class="card-title red font-weight-bold">{{integrante.nombre}}</h6>
+		    <p class="card-text small font-weight-bold">{{integrante.rango}}<br>{{integrante.premio}}</p>
+		  </div>
+		</div>
+		{% endfor %}
+	</div>
+{% endblock %}
