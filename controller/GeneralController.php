@@ -18,8 +18,13 @@ class GeneralController{
     }
 
     public function index(){
-                $paremeters = array();
-                $this->view('index', $paremeters);
+        $paremeters = array();
+        $this->view('index', $paremeters);
+    }
+
+    public function runContacto(){
+        $paremeters = array();
+        $this->view('contacto', $paremeters);  
     }
 }
 
