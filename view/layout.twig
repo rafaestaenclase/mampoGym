@@ -17,6 +17,9 @@
 	<div class="backgroundWhite col-sm-12 col-lg-6"></div>
 	<div class="container-fluid col-sm-12 col-lg-6">
 		<div class="header row justify-content-center"><h1>MAMPO<span class="red">GYM</span></h1></div>
+		{% if hash is defined %}
+		 <div class="header row justify-content-center"><small><a href="index.php?controller=Administrador&action=logOut">MODO ADMINSITRADOR</a></small></div>
+		{% endif %}
 		<div class="nav row">
 			<nav class="navbar col-12 navbar-expand-sm">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +49,7 @@
 				{% endblock %}
 			</div>
 		</div>
-		<div class="footer row justify-content-center"><p>Rafael Hernández</p></div>
+		<div class="footer row justify-content-center"><a href="index.php?controller=Administrador&action=runLogin">Integrante</a></div>
 		
 	</div>
 

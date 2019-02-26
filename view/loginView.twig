@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<script src="js/main.js"></script>
+	<link rel="icon" type="image/ico" href="img/server/icon.ico">
+	<link rel="stylesheet" type="text/css" href="./view/css/bootstrap.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="view/css/layout.css">
+	<title></title>
+</head>
+<body>
+	<div class="row justify-content-center mt-3">
+	<div class="col-12"><h5 align="center">INTEGRANTES</h5></div>
+	<form id="logForm" class="col-11 col-sm-9 col-md-6 justify-content-center" method="POST" action="index.php?controller=Administrador&action=verifyLogin">
+	  <div class="form-group">
+	    <label for="usuario">Usuario</label>
+	    <input type="text" name="usuario" class="form-control" id="usuario" placeholder="Inserte el nombre de usuario">
+	  </div>
+	  <div class="form-group">
+	    <label for="contrasenna">Contraseña</label>
+	    <input type="password" name="contrasenna" class="form-control" id="contrasenna" placeholder="Inserte la contraseña">
+	  </div>
+	  <button type="submit" class="btn btn-primary float-right">Entrar</button>
+		</form>
+	</div>
+</body>
+{# SCRIPT #}
+	<script type="text/javascript" src="./view/js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="./view/js/bootstrap.js"></script>
+</html>
