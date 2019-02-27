@@ -1,0 +1,37 @@
+	{% extends 'layout.twig' %}
+
+	{% block content %}
+		<style type="text/css">
+			.card img {
+			  object-fit:cover;
+			  object-position: center;
+			  width: 100%;
+			  max-height: 250px;
+			}
+		</style>
+		{% if hash is defined %}
+		<div class="row justify-content-center">
+			<div class="col-10 ml-5 mr-5 mt-3 red">CREAR</div>
+			<form method="POST" action="index.php?controller=Equipo&action=insertIntegrante">
+			<div align="center" class="card m-3">
+			  <img class="card-img-top" src="{{integrante.foto}}" alt="No se encontró la imágen">
+			  <div class="card-body">
+			    <h6 class="card-title red font-weight-bold">
+			    	<small>Nombre:</small>
+			    	<input type="`text" name="nombre"></h6>
+			    <p class="card-text small font-weight-bold">
+			    	Rango:
+			    	<input type="text" name="rango"><br>
+			    	Premio:
+			    	<input type="text" name="premio"></p>
+			  </div>
+				  		<button type="submit" class="btn btn-block btn-social btn-envelope btn-info">
+						  <span class="fa fa-plus"> Crear</span>
+						</button>
+			</div>
+			</form>
+		</div>
+		{% else %}
+				INICIE SESIÓN COMO ADMINISTRADOR
+		{% endif %}
+	{% endblock %}

@@ -1,0 +1,42 @@
+	{% extends 'layout.twig' %}
+
+	{% block content %}
+		<style type="text/css">
+			.card img {
+			  object-fit:cover;
+			  object-position: center;
+			  width: 100%;
+			  max-height: 250px;
+			}
+		</style>
+		{% if hash is defined %}
+		<div class="row justify-content-center">
+			{% for integrante in equipo%}
+			<div class="col-10 ml-5 mr-5 mt-3 red">EDITAR<a class="float-right" href="index.php?controller=Equipo&action=deleteIntegrante&idI={{integrante.id}}"><span class="fa fa-trash"> Eliminar</span></a></div>
+			<form method="POST" action="index.php?controller=Equipo&action=updateIntegrante">
+			<div align="center" class="card m-3">
+			  <img class="card-img-top" src="{{integrante.foto}}" alt="No se encontró la imágen">
+			  <div class="card-body">
+			    <h6 class="card-title red font-weight-bold">
+			    	<input type="hidden" name="idI" value="{{integrante.id}}">
+			    	<small>Nombre:</small>
+			    	<input type="`text" name="nombre" value="{{integrante.nombre}}"></h6>
+			    <p class="card-text small font-weight-bold">
+			    	Rango:
+			    	<input type="text" name="rango" value="{{integrante.rango}}"><br>
+			    	Premio:
+			    	<input type="text" name="premio" value="{{integrante.premio}}"></p>
+			  </div>
+			  {% if hash is defined %}
+				  		<button type="submit" class="btn btn-block btn-social btn-envelope btn-info">
+						  <span class="fa fa-save"> Guardar</span>
+						</button>
+			  		{% endif %}
+			</div>
+			</form>
+			{% endfor %}
+		</div>
+		{% else %}
+				INICIE SESIÓN COMO ADMINISTRADOR
+		{% endif %}
+	{% endblock %}

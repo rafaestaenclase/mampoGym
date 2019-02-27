@@ -16,6 +16,35 @@
 	        return $resul;
 		}
 
+		function getIntegranteById($id){
+			$data = array("id" => $id);
+			$con = $this->getConnection()->prepare("SELECT * FROM integrante where id = :id");
+	        $con->execute($data);
+	        $resul = $con->fetchAll();
+	        $this->conection = null;
+	        return $resul;
+		}
+
+		function insertIntegrante($nombre, $rango, $premio){
+			$data = array("nombre" => $nombre, "rango" => $rango, "premio" => $premio);
+			$con = $this->getConnection()->prepare("INSERT INTO integrante (nombre, rango, premio) values (:nombre, :rango, :premio)");
+	        $con->execute($data);
+	        $this->conection = null;
+		}
+
+		function updateIntegrante($id, $nombre, $rango, $premio){
+			$data = array("id" => $id, "nombre" => $nombre, "rango" => $rango, "premio" => $premio);
+			$con = $this->getConnection()->prepare("UPDATE integrante SET nombre = :nombre, rango = :rango, premio = :premio where id = :id");
+	        $con->execute($data);
+	        $this->conection = null;
+		}
+
+		function deleteIntegrante($id){
+			$data = array("id" => $id);
+			$con = $this->getConnection()->prepare("DELETE from integrante where id = :id");
+	        $con->execute($data);
+		}
+
 		function getPostByProfile($id){
 			$data = array("id" => $id);
 			$con = $this->getConnection()->prepare("SELECT * FROM post where idProfile = :id ORDER BY datePost DESC");

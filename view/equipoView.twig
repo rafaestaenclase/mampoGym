@@ -29,7 +29,11 @@
 		}
 	</style>
 
-	<div class="col-12 ml-5 mt-3 red">EQUIPO</div>
+	<div class="col-10 ml-5 mr-5 mt-3 red">EQUIPO
+	{% if hash is defined %}
+			<a class="float-right" href="index.php?controller=Equipo&action=insertIntegranteView"><span class="fa fa-plus"> Crear integrante</span></a>
+			{% endif %}
+	</div>
 	<div class="row justify-content-center">
 		{% for integrante in equipo%}
 		<div align="center" class="card m-3">
@@ -38,6 +42,11 @@
 		    <h6 class="card-title red font-weight-bold">{{integrante.nombre}}</h6>
 		    <p class="card-text small font-weight-bold">{{integrante.rango}}<br>{{integrante.premio}}</p>
 		  </div>
+		  {% if hash is defined %}
+			  		<a href="index.php?controller=Equipo&action=updateIntegranteView&idI={{integrante.id}}" class="btn btn-block btn-social btn-envelope btn-info">
+					    <span class="fa fa-pencil">Editar</span>
+					</a>
+		  		{% endif %}
 		</div>
 		{% endfor %}
 	</div>

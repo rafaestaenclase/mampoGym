@@ -21,6 +21,36 @@
 			$this->view('equipo', $parameters);
 		}
 
+		function insertIntegranteView(){
+			$equipo = new Equipo($this->connection);
+			$parameters = array();
+			$this->view('integranteInsertar', $parameters);
+		}
+
+		function insertIntegrante(){
+			$equipo = new Equipo($this->connection);
+			$equipo->insertIntegrante($_POST["nombre"], $_POST["rango"], $_POST["premio"]);
+			$this->runEquipo();
+		}
+
+		function updateIntegranteView(){
+			$equipo = new Equipo($this->connection);
+			$parameters = array("equipo" => $equipo->getIntegranteById($_GET["idI"]));
+			$this->view('integranteActualizar', $parameters);
+		}
+
+		function updateIntegrante(){
+			$equipo = new Equipo($this->connection);
+			$equipoObj = array("equipo" => $equipo->updateIntegrante($_POST["idI"], $_POST["nombre"], $_POST["rango"], $_POST["premio"]));
+			$this->runEquipo();
+		}
+
+		function deleteIntegrante(){
+			$equipo = new Equipo($this->connection);
+			$eventoObj = $equipo->deleteIntegrante($_GET["idI"]);
+			$this->runEquipo();
+		}
+
 		function getAll(){
 			$connection = new Connection();
 			$post = new Post($connection);

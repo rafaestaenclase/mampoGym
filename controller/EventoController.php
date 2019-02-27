@@ -49,7 +49,7 @@
 
 		function deleteEvento(){
 			$evento = new Evento($this->connection);
-			$eventoObj = array("eventos" => $evento->deleteEvento($_GET["idE"]));
+			$evento->deleteEvento($_GET["idE"]);
 			$this->runEventos();
 		}
 

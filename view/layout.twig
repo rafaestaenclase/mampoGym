@@ -18,12 +18,12 @@
 	<div class="container-fluid col-sm-12 col-lg-6">
 		<div class="header row justify-content-center"><h1>MAMPO<span class="red">GYM</span></h1></div>
 		{% if hash is defined %}
-		 <div class="header row justify-content-center"><small><a href="index.php?controller=Administrador&action=logOut">MODO ADMINSITRADOR</a></small></div>
+		 <div class="header row justify-content-center"><small><a href="index.php?controller=Administrador&action=logOut">MODO ADMINISTRADOR</a></small></div>
 		{% endif %}
 		<div class="nav row">
 			<nav class="navbar col-12 navbar-expand-sm">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
+			    <span class="fa fa-angle-double-down"></span>
 			  </button>
 			 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			  <ul class="navbar-nav mr-auto">
@@ -56,5 +56,12 @@
 	{# SCRIPT #}
 	<script type="text/javascript" src="./view/js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="./view/js/bootstrap.js"></script>
+	<script type="text/javascript">
+		$(".content").css("display", "none");
+		$(document).ready(function(){
+	       $(".content").fadeIn('fast');
+	   		}
+		);
+	</script>
 </body>
 </html>
