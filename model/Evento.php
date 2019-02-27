@@ -16,13 +16,33 @@
 	        return $resul;
 		}
 
-		function getPostByProfile($id){
+		function getEventoById($id){
 			$data = array("id" => $id);
-			$con = $this->getConnection()->prepare("SELECT * FROM post where idProfile = :id ORDER BY datePost DESC");
+			$con = $this->getConnection()->prepare("SELECT * FROM evento where id = :id");
 	        $con->execute($data);
 	        $resul = $con->fetchAll();
 	        $this->conection = null;
 	        return $resul;
+		}
+
+		function insertEvento($nombre, $lugar, $fecha){
+			$data = array("nombre" => $nombre, "lugar" => $lugar, "fecha" => $fecha);
+			$con = $this->getConnection()->prepare("INSERT INTO evento (nombre, lugar, fecha) values (:nombre, :lugar, :fecha)");
+	        $con->execute($data);
+	        $this->conection = null;
+		}
+
+		function updateEvento($id, $nombre, $lugar, $fecha){
+			$data = array("id" => $id, "nombre" => $nombre, "lugar" => $lugar, "fecha" => $fecha);
+			$con = $this->getConnection()->prepare("UPDATE evento SET nombre = :nombre, lugar = :lugar, fecha = :fecha where id = :id");
+	        $con->execute($data);
+	        $this->conection = null;
+		}
+
+		function deleteEvento($id){
+			$data = array("id" => $id);
+			$con = $this->getConnection()->prepare("DELETE from evento where id = :id");
+	        $con->execute($data);
 		}
 
 		function getPostById($id){

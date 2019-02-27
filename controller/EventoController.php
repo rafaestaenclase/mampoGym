@@ -22,11 +22,35 @@
 			$this->view('evento', $parameters);
 		}
 
-		function getAll(){
-			$connection = new Connection();
-			$post = new Post($connection);
-			$resul = $post->getAll();
-			return $resul;
+		function insertEventoView(){
+			$evento = new Evento($this->connection);
+			$parameters = array();
+			$this->view('eventoInsertar', $parameters);
+		}
+
+		function insertEvento(){
+			$evento = new Evento($this->connection);
+			$eventoObj = array("eventos" => $evento->insertEvento($_POST["nombre"], $_POST["lugar"], $_POST["fecha"]));
+			$this->runEventos();
+		}
+
+		function updateEventoView(){
+			$evento = new Evento($this->connection);
+			$eventoObj = array("eventos" => $evento->getEventoById($_GET["idE"]));
+			$parameters = $eventoObj;
+			$this->view('eventoActualizar', $parameters);
+		}
+
+		function updateEvento(){
+			$evento = new Evento($this->connection);
+			$eventoObj = array("eventos" => $evento->updateEvento($_POST["idE"], $_POST["nombre"], $_POST["lugar"], $_POST["fecha"]));
+			$this->runEventos();
+		}
+
+		function deleteEvento(){
+			$evento = new Evento($this->connection);
+			$eventoObj = array("eventos" => $evento->deleteEvento($_GET["idE"]));
+			$this->runEventos();
 		}
 
 		function getPostByProfile(){

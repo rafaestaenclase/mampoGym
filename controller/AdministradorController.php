@@ -42,6 +42,7 @@
 
 		function logOut(){
 			session_destroy();
+			header('Refresh: 0; url=index.php');
 			$parameters = Array();
 			$this->view('index', $parameters);
 		}

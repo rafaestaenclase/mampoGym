@@ -7,19 +7,29 @@
 			  object-position: center;
 			  width: 100%;
 			  max-height: 250px;
-			  margin-bottom: 1rem;
 			}
 		</style>
 
-		<div class="col-12 ml-5 mt-3 red">EVENTOS</div>
+		<div class="col-10 ml-5 mr-5 mt-3 red">EVENTOS
+			{% if hash is defined %}
+			<a class="float-right" href="index.php?controller=Evento&action=insertEventoView"><span class="fa fa-plus"> Crear evento</span></a>
+			{% endif %}
+		</div>
 		<div class="row justify-content-center">
 			{% for evento in eventos%}
 			<div class="card m-3" style="width: 18rem;">
 			  <div class="card-body">
-			    <h5 class="card-title">{{evento.nombre}}</h5>
+			    <h5 class="card-title">
+			    	{{evento.nombre}}
+			    </h5>
 			    <p class="card-text small">{{evento.lugar}} {{evento.fecha}}</p>
 			  </div>
 			  <img class="card-img-top" src="{{evento.foto}}" alt="Card image cap">
+			  {% if hash is defined %}
+			  		<a href="index.php?controller=Evento&action=updateEventoView&idE={{evento.id}}" class="btn btn-block btn-social btn-envelope btn-info">
+					    <span class="fa fa-pencil">Editar</span>
+					</a>
+		  		{% endif %}
 			</div>
 			{% endfor %}
 		</div>

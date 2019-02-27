@@ -1,0 +1,44 @@
+	{% extends 'layout.twig' %}
+
+	{% block content %}
+		<style type="text/css">
+			.card img {
+			  object-fit:cover;
+			  object-position: center;
+			  width: 100%;
+			  max-height: 250px;
+			}
+		</style>
+
+		{% if hash is defined %}
+		<div class="row justify-content-center">
+			{% for evento in eventos%}
+			<div class="col-10 ml-5 mr-5 mt-3 red">EDITAR<a class="float-right" href="index.php?controller=Evento&action=deleteEvento&idE={{evento.id}}"><span class="fa fa-trash"> Eliminar</span></a></div>
+			<form method="POST" action="index.php?controller=Evento&action=updateEvento&idE={{evento.id}}">
+			<div class="card m-3" style="width: 18rem;">
+			  <div class="card-body">
+			    <h5 class="card-title">
+			    	<input type="hidden" name="idE" value="{{evento.id}}">
+			    	<small>Nombre:</small>
+			    	<input type="text" name="nombre" value="{{evento.nombre}}">
+			    </h5>
+			    <p class="card-text small">
+			    	<big>Lugar:</big>
+			    	<input type="text" name="lugar" value="{{evento.lugar}}">
+			    	<div class="w-100"></div>
+			    	Fecha:
+			    	<input type="text" name="fecha" value="{{evento.fecha}}">
+			    </p>
+			  </div>
+			  <img class="card-img-top" src="{{evento.foto}}" alt="Card image cap">
+			  	<button type="submit" class="btn btn-block btn-social btn-envelope btn-info">
+				  <span class="fa fa-save"> Guardar</span>
+				</button>
+			</div>
+			</form>
+			{% endfor %}
+		</div>
+		{% else %}
+				INICIE SESIÓN COMO ADMINISTRADOR
+		{% endif %}
+	{% endblock %}
