@@ -25,9 +25,9 @@
 	        return $resul;
 		}
 
-		function insertEvento($nombre, $lugar, $fecha){
-			$data = array("nombre" => $nombre, "lugar" => $lugar, "fecha" => $fecha);
-			$con = $this->getConnection()->prepare("INSERT INTO evento (nombre, lugar, fecha) values (:nombre, :lugar, :fecha)");
+		function insertEvento($nombre, $lugar, $fecha, $foto){
+			$data = array("nombre" => $nombre, "lugar" => $lugar, "fecha" => $fecha, "foto" => $foto);
+			$con = $this->getConnection()->prepare("INSERT INTO evento (nombre, lugar, fecha, foto) values (:nombre, :lugar, :fecha, :foto)");
 	        $con->execute($data);
 	        $this->conection = null;
 		}

@@ -25,9 +25,9 @@
 	        return $resul;
 		}
 
-		function insertIntegrante($nombre, $rango, $premio){
-			$data = array("nombre" => $nombre, "rango" => $rango, "premio" => $premio);
-			$con = $this->getConnection()->prepare("INSERT INTO integrante (nombre, rango, premio) values (:nombre, :rango, :premio)");
+		function insertIntegrante($nombre, $rango, $premio, $foto){
+			$data = array("nombre" => $nombre, "rango" => $rango, "premio" => $premio, "foto" => $foto);
+			$con = $this->getConnection()->prepare("INSERT INTO integrante (nombre, rango, premio, foto) values (:nombre, :rango, :premio, :foto)");
 	        $con->execute($data);
 	        $this->conection = null;
 		}

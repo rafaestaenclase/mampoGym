@@ -30,7 +30,17 @@
 
 		function insertEvento(){
 			$evento = new Evento($this->connection);
-			$eventoObj = array("eventos" => $evento->insertEvento($_POST["nombre"], $_POST["lugar"], $_POST["fecha"]));
+			$archiveTem = $_FILES['archive']['tmp_name'];
+			$name = $_FILES['archive']['name'];
+			$type = $_FILES['archive']['type'];
+			$size = $_FILES['archive']['size'];
+
+			$destiny = "img/eventos/"."_".$name;
+
+			if (move_uploaded_file($archiveTem, $destiny)) {
+				$eventoObj = array("eventos" => $evento->insertEvento($_POST["nombre"], $_POST["lugar"], $_POST["fecha"], $destiny));
+			}
+			
 			$this->runEventos();
 		}
 

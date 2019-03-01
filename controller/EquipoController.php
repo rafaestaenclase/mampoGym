@@ -29,7 +29,19 @@
 
 		function insertIntegrante(){
 			$equipo = new Equipo($this->connection);
-			$equipo->insertIntegrante($_POST["nombre"], $_POST["rango"], $_POST["premio"]);
+
+			$archiveTem = $_FILES['archive']['tmp_name'];
+			$name = $_FILES['archive']['name'];
+			$type = $_FILES['archive']['type'];
+			$size = $_FILES['archive']['size'];
+
+			$destiny = "img/equipo/"."_".$name;
+
+			if (move_uploaded_file($archiveTem, $destiny)) {
+				$equipo->insertIntegrante($_POST["nombre"], $_POST["rango"], $_POST["premio"], $destiny);
+			}
+
+			
 			$this->runEquipo();
 		}
 

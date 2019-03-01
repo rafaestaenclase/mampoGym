@@ -12,18 +12,19 @@
 		{% if hash is defined %}
 		<div class="row justify-content-center">
 			<div class="col-10 ml-5 mr-5 mt-3 red">CREAR</div>
-			<form method="POST" action="index.php?controller=Equipo&action=insertIntegrante">
+			<form method="POST" action="index.php?controller=Equipo&action=insertIntegrante" enctype="multipart/form-data">
 			<div align="center" class="card m-3">
-			  <img class="card-img-top" src="{{integrante.foto}}" alt="No se encontró la imágen">
 			  <div class="card-body">
+			  	Imagen:
+			  <input type="file" name="archive">
 			    <h6 class="card-title red font-weight-bold">
 			    	<small>Nombre:</small>
-			    	<input type="`text" name="nombre"></h6>
+			    	<input type="`text" name="nombre" maxlength="28"></h6>
 			    <p class="card-text small font-weight-bold">
 			    	Rango:
-			    	<input type="text" name="rango"><br>
+			    	<input type="text" name="rango" maxlength="20"><br>
 			    	Premio:
-			    	<input type="text" name="premio"></p>
+			    	<input type="text" name="premio" maxlength="20"></p>
 			  </div>
 				  		<button type="submit" class="btn btn-block btn-social btn-envelope btn-info">
 						  <span class="fa fa-plus"> Crear</span>

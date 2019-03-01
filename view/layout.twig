@@ -16,7 +16,9 @@
 	<div class="background"></div>
 	<div class="backgroundWhite col-sm-12 col-lg-6"></div>
 	<div class="container-fluid col-sm-12 col-lg-6">
-		<div class="header row justify-content-center"><h1>MAMPO<span class="red">GYM</span></h1></div>
+		<div class="header row justify-content-center">
+			<a class="nav-link" href="index.php"><h1>MAMPO<span class="red">GYM</span></h1></a>
+		</div>
 		{% if hash is defined %}
 		 <div class="header row justify-content-center"><small><a href="index.php?controller=Administrador&action=logOut">MODO ADMINISTRADOR</a></small></div>
 		{% endif %}
@@ -62,6 +64,10 @@
 	       $(".content").fadeIn('fast');
 	   		}
 		);
+
+		jQuery('input').keyup(function() {
+			$(this).val($(this).val().toUpperCase());
+		});
 	</script>
 </body>
 </html>
