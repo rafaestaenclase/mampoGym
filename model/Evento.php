@@ -9,7 +9,7 @@
 
 
 		function getAll(){
-			$con = $this->getConnection()->prepare("SELECT * FROM evento");
+			$con = $this->getConnection()->prepare("SELECT * FROM evento ORDER BY fecha desc");
 	        $con->execute();
 	        $resul = $con->fetchAll();
 	        $this->conection = null;
@@ -32,9 +32,9 @@
 	        $this->conection = null;
 		}
 
-		function updateEvento($id, $nombre, $lugar, $fecha){
-			$data = array("id" => $id, "nombre" => $nombre, "lugar" => $lugar, "fecha" => $fecha);
-			$con = $this->getConnection()->prepare("UPDATE evento SET nombre = :nombre, lugar = :lugar, fecha = :fecha where id = :id");
+		function updateEvento($id, $nombre, $lugar, $fecha, $foto){
+			$data = array("id" => $id, "nombre" => $nombre, "lugar" => $lugar, "fecha" => $fecha, "foto" => $foto);
+			$con = $this->getConnection()->prepare("UPDATE evento SET nombre = :nombre, lugar = :lugar, fecha = :fecha, foto = :foto where id = :id");
 	        $con->execute($data);
 	        $this->conection = null;
 		}

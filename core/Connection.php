@@ -4,7 +4,7 @@ class Connection{
     private $host, $user, $pass, $database, $charset;
 
     public function __construct() {
-        require_once __DIR__.'/../config/database.php';
+        require_once __DIR__.'/../config/dataBase.php';
         $this->driver = DB_DRIVER;
         $this->host = DB_HOST;
         $this->user = DB_USER;

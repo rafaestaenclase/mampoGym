@@ -32,9 +32,9 @@
 	        $this->conection = null;
 		}
 
-		function updateIntegrante($id, $nombre, $rango, $premio){
-			$data = array("id" => $id, "nombre" => $nombre, "rango" => $rango, "premio" => $premio);
-			$con = $this->getConnection()->prepare("UPDATE integrante SET nombre = :nombre, rango = :rango, premio = :premio where id = :id");
+		function updateIntegrante($id, $nombre, $rango, $premio, $foto){
+			$data = array("id" => $id, "nombre" => $nombre, "rango" => $rango, "premio" => $premio, "foto" => $foto);
+			$con = $this->getConnection()->prepare("UPDATE integrante SET nombre = :nombre, rango = :rango, premio = :premio, foto = :foto where id = :id");
 	        $con->execute($data);
 	        $this->conection = null;
 		}

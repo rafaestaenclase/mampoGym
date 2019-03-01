@@ -31,17 +31,16 @@
 		function insertEvento(){
 			$evento = new Evento($this->connection);
 			$archiveTem = $_FILES['archive']['tmp_name'];
-			$name = $_FILES['archive']['name'];
+			$name = $_POST["nombre"];
 			$type = $_FILES['archive']['type'];
 			$size = $_FILES['archive']['size'];
 
 			$destiny = "img/eventos/"."_".$name;
 
 			if (move_uploaded_file($archiveTem, $destiny)) {
-				$eventoObj = array("eventos" => $evento->insertEvento($_POST["nombre"], $_POST["lugar"], $_POST["fecha"], $destiny));
+				$evento->insertEvento($_POST["nombre"], $_POST["lugar"], $_POST["fecha"], $destiny);
 			}
-			
-			$this->runEventos();
+			header('Location: index.php?controller=Evento&action=runEventos');
 		}
 
 		function updateEventoView(){
@@ -53,14 +52,43 @@
 
 		function updateEvento(){
 			$evento = new Evento($this->connection);
-			$eventoObj = array("eventos" => $evento->updateEvento($_POST["idE"], $_POST["nombre"], $_POST["lugar"], $_POST["fecha"]));
-			$this->runEventos();
+
+			$oldI = $evento->getEventoById($_POST["idE"]);
+			$nameD = $oldI[0]["foto"];
+
+
+			if ($_POST["nombre"] !== $oldI[0]["nombre"]) {
+				$destiny = "img/eventos/"."_".$_POST["nombre"];
+				rename($oldI[0]["foto"], $destiny);
+			}
+
+
+			if ($_FILES['archive']['tmp_name'] != null) {
+				unlink($nameD);
+
+				$archiveTem = $_FILES['archive']['tmp_name'];
+				$name = $_POST["nombre"];
+				$type = $_FILES['archive']['type'];
+				$size = $_FILES['archive']['size'];
+
+				$destiny = "img/eventos/"."_".$name;
+			}else{
+				$destiny = $nameD;
+			}
+
+			move_uploaded_file($archiveTem, $destiny);
+				
+			$evento->updateEvento($_POST["idE"], $_POST["nombre"], $_POST["lugar"], $_POST["fecha"], $destiny);
+			
+			header('Location: index.php?controller=Evento&action=runEventos');
 		}
 
 		function deleteEvento(){
 			$evento = new Evento($this->connection);
+			$name = $evento->getEventoById($_GET["idE"])[0]["foto"];
 			$evento->deleteEvento($_GET["idE"]);
-			$this->runEventos();
+			unlink($name);
+			header('Location: index.php?controller=Evento&action=runEventos');
 		}
 
 		function getPostByProfile(){

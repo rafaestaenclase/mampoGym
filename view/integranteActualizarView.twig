@@ -13,9 +13,10 @@
 		<div class="row justify-content-center">
 			{% for integrante in equipo%}
 			<div class="col-10 ml-5 mr-5 mt-3 red">EDITAR<a class="float-right" href="index.php?controller=Equipo&action=deleteIntegrante&idI={{integrante.id}}"><span class="fa fa-trash"> Eliminar</span></a></div>
-			<form method="POST" action="index.php?controller=Equipo&action=updateIntegrante">
+			<form method="POST" action="index.php?controller=Equipo&action=updateIntegrante" enctype="multipart/form-data">
 			<div align="center" class="card m-3">
 			  <img class="card-img-top" src="{{integrante.foto}}" alt="No se encontró la imágen">
+			  <input type="file" name="archive">
 			  <div class="card-body">
 			    <h6 class="card-title red font-weight-bold">
 			    	<input type="hidden" name="idI" value="{{integrante.id}}">

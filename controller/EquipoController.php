@@ -29,9 +29,8 @@
 
 		function insertIntegrante(){
 			$equipo = new Equipo($this->connection);
-
 			$archiveTem = $_FILES['archive']['tmp_name'];
-			$name = $_FILES['archive']['name'];
+			$name = $_POST["nombre"];
 			$type = $_FILES['archive']['type'];
 			$size = $_FILES['archive']['size'];
 
@@ -42,7 +41,7 @@
 			}
 
 			
-			$this->runEquipo();
+			header('Location: index.php?controller=Equipo&action=runEquipo');
 		}
 
 		function updateIntegranteView(){
@@ -53,14 +52,44 @@
 
 		function updateIntegrante(){
 			$equipo = new Equipo($this->connection);
-			$equipoObj = array("equipo" => $equipo->updateIntegrante($_POST["idI"], $_POST["nombre"], $_POST["rango"], $_POST["premio"]));
-			$this->runEquipo();
+
+			$oldI = $equipo->getIntegranteById($_POST["idI"]);
+			$nameD = $oldI[0]["foto"];
+
+
+			if ($_POST["nombre"] !== $oldI[0]["nombre"]) {
+				$destiny = "img/equipo/"."_".$_POST["nombre"];
+				rename($oldI[0]["foto"], $destiny);
+			}
+
+
+			if ($_FILES['archive']['tmp_name'] != null) {
+				unlink($nameD);
+
+				$archiveTem = $_FILES['archive']['tmp_name'];
+				$name = $_POST["nombre"];
+				$type = $_FILES['archive']['type'];
+				$size = $_FILES['archive']['size'];
+
+				$destiny = "img/equipo/"."_".$name;
+			}else{
+				$destiny = $nameD;
+			}
+
+			move_uploaded_file($archiveTem, $destiny);
+			
+			$equipo->updateIntegrante($_POST["idI"], $_POST["nombre"], $_POST["rango"], $_POST["premio"], $destiny);
+			
+			
+			header('Location: index.php?controller=Equipo&action=runEquipo');
 		}
 
 		function deleteIntegrante(){
 			$equipo = new Equipo($this->connection);
-			$eventoObj = $equipo->deleteIntegrante($_GET["idI"]);
-			$this->runEquipo();
+			$name = $equipo->getIntegranteById($_GET["idI"])[0]["foto"];
+			$equipo->deleteIntegrante($_GET["idI"]);
+			unlink($name);
+			header('Location: index.php?controller=Equipo&action=runEquipo');
 		}
 
 		function getAll(){
