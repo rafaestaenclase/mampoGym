@@ -34,8 +34,10 @@
 			$name = $_POST["nombre"];
 			$type = $_FILES['archive']['type'];
 			$size = $_FILES['archive']['size'];
+			$path = $_FILES['archive']['name'];
+			$ext = pathinfo($path, PATHINFO_EXTENSION);
 
-			$destiny = "img/eventos/"."_".$name;
+			$destiny = "img/eventos/"."_".$name.".".$ext;
 
 			if (move_uploaded_file($archiveTem, $destiny)) {
 				$evento->insertEvento($_POST["nombre"], $_POST["lugar"], $_POST["fecha"], $destiny);
@@ -55,11 +57,15 @@
 
 			$oldI = $evento->getEventoById($_POST["idE"]);
 			$nameD = $oldI[0]["foto"];
+			$destiny = "";
 
 
 			if ($_POST["nombre"] !== $oldI[0]["nombre"]) {
-				$destiny = "img/eventos/"."_".$_POST["nombre"];
+				$ext = pathinfo($oldI[0]["foto"], PATHINFO_EXTENSION);
+				$destiny = "img/eventos/"."_".$_POST["nombre"].".".$ext;
 				rename($oldI[0]["foto"], $destiny);
+				$evento->updateEvento($_POST["idE"], $_POST["nombre"], $_POST["lugar"], $_POST["fecha"], $destiny);
+				$nameD = $destiny;
 			}
 
 
@@ -70,15 +76,19 @@
 				$name = $_POST["nombre"];
 				$type = $_FILES['archive']['type'];
 				$size = $_FILES['archive']['size'];
+				$path = $_FILES['archive']['name'];
+				$ext = pathinfo($path, PATHINFO_EXTENSION);
 
-				$destiny = "img/eventos/"."_".$name;
+				$destiny = "img/eventos/"."_".$name.".".$ext;
+
+				move_uploaded_file($archiveTem, $destiny);
+
+				$evento->updateEvento($_POST["idE"], $_POST["nombre"], $_POST["lugar"], $_POST["fecha"], $destiny);
 			}else{
 				$destiny = $nameD;
 			}
-
-			move_uploaded_file($archiveTem, $destiny);
-				
-			$evento->updateEvento($_POST["idE"], $_POST["nombre"], $_POST["lugar"], $_POST["fecha"], $destiny);
+			
+			
 			
 			header('Location: index.php?controller=Evento&action=runEventos');
 		}

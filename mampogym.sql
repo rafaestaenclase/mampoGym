@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-03-2019 a las 09:36:53
+-- Tiempo de generación: 04-03-2019 a las 10:37:15
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -53,19 +53,8 @@ CREATE TABLE `evento` (
   `nombre` varchar(20) NOT NULL,
   `lugar` varchar(30) NOT NULL,
   `fecha` varchar(11) NOT NULL,
-  `precio` int(3) NOT NULL,
   `foto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `evento`
---
-
-INSERT INTO `evento` (`id`, `nombre`, `lugar`, `fecha`, `precio`, `foto`) VALUES
-(1, 'LA GRAN REVANCHA', 'Bec Bilbao', '29/02/2019', 30, 'img/eventos/cartel1.jpg'),
-(13, 'LA GRAN REVANCHA', 'SAD', '29/02/2019', 0, 'img/eventos/_entrevista-joana-nany-k8ID-U502166501651sFF-624x385@El Correo.jpg'),
-(16, 'AAAAA', 'Gasteiz', '29/02/2019', 0, 'img/eventos/_importante.png'),
-(17, 'AAAAAAAAAAAAAAAAAAA', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAA', '29/02/2019', 0, 'img/eventos/_importante.png');
 
 -- --------------------------------------------------------
 
@@ -80,18 +69,6 @@ CREATE TABLE `integrante` (
   `premio` varchar(20) NOT NULL,
   `foto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `integrante`
---
-
-INSERT INTO `integrante` (`id`, `nombre`, `rango`, `premio`, `foto`) VALUES
-(1, 'KERMAN LEJARRAGA', 'PRO MAMPOGYM', 'CAMPEÓN IBF', 'img/equipo/integrante1.jpg'),
-(4, 'KERMAN LEJARRAGA', 'PRO MAMPOGYM', 'CAMPEÓN IBF', 'img/equipo/integrante1.jpg'),
-(6, 'JOANA', 'Fuerte', 'Alma', 'img/equipo/_entrevista-joana-nany-k8ID-U502166501651sFF-624x385@El Correo.jpg'),
-(7, 'ffffffffffffffffffffffffffffff', 'fff', 'ff', 'img/equipo/_importante.png'),
-(8, 'ffffffffffffffffffffffffffffff', 'fff', 'ff', 'img/equipo/_importante.png'),
-(9, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaa', 'XSDDDDDDDDDDDDD', 'img/equipo/_importante.png');
 
 --
 -- Índices para tablas volcadas
@@ -129,13 +106,13 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `integrante`
 --
 ALTER TABLE `integrante`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

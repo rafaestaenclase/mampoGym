@@ -30,11 +30,13 @@
 		function insertIntegrante(){
 			$equipo = new Equipo($this->connection);
 			$archiveTem = $_FILES['archive']['tmp_name'];
+			$path = $_FILES['archive']['name'];
+			$ext = pathinfo($path, PATHINFO_EXTENSION);
 			$name = $_POST["nombre"];
 			$type = $_FILES['archive']['type'];
 			$size = $_FILES['archive']['size'];
 
-			$destiny = "img/equipo/"."_".$name;
+			$destiny = "img/equipo/"."_".$name.".".$ext;
 
 			if (move_uploaded_file($archiveTem, $destiny)) {
 				$equipo->insertIntegrante($_POST["nombre"], $_POST["rango"], $_POST["premio"], $destiny);
@@ -55,11 +57,14 @@
 
 			$oldI = $equipo->getIntegranteById($_POST["idI"]);
 			$nameD = $oldI[0]["foto"];
-
+			$destiny = $nameD;
 
 			if ($_POST["nombre"] !== $oldI[0]["nombre"]) {
-				$destiny = "img/equipo/"."_".$_POST["nombre"];
+				$ext = pathinfo($oldI[0]["foto"], PATHINFO_EXTENSION);
+				$destiny = "img/equipo/"."_".$_POST["nombre"].".".$ext;
 				rename($oldI[0]["foto"], $destiny);
+				$equipo->updateIntegrante($_POST["idI"], $_POST["nombre"], $_POST["rango"], $_POST["premio"], $destiny);
+				$nameD = $destiny;
 			}
 
 
@@ -68,19 +73,20 @@
 
 				$archiveTem = $_FILES['archive']['tmp_name'];
 				$name = $_POST["nombre"];
+				$ext = pathinfo($name, PATHINFO_EXTENSION);
 				$type = $_FILES['archive']['type'];
 				$size = $_FILES['archive']['size'];
+				$path = $_FILES['archive']['name'];
+				$ext = pathinfo($path, PATHINFO_EXTENSION);
 
-				$destiny = "img/equipo/"."_".$name;
-			}else{
-				$destiny = $nameD;
+				$destiny = "img/equipo/"."_".$name.".".$ext;
+
+				move_uploaded_file($archiveTem, $destiny);
+
+				$equipo->updateIntegrante($_POST["idI"], $_POST["nombre"], $_POST["rango"], $_POST["premio"], $destiny);
+
 			}
 
-			move_uploaded_file($archiveTem, $destiny);
-			
-			$equipo->updateIntegrante($_POST["idI"], $_POST["nombre"], $_POST["rango"], $_POST["premio"], $destiny);
-			
-			
 			header('Location: index.php?controller=Equipo&action=runEquipo');
 		}
 
