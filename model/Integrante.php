@@ -25,6 +25,15 @@
 	        return $resul;
 		}
 
+		function getIntegranteByNombre($nombre){
+			$data = array("nombre" => $nombre);
+			$con = $this->getConnection()->prepare("SELECT * FROM integrante where nombre = :nombre");
+	        $con->execute($data);
+	        $resul = $con->fetchAll();
+	        $this->conection = null;
+	        return $resul;
+		}
+
 		function insertIntegrante($nombre, $rango, $premio, $foto){
 			$data = array("nombre" => $nombre, "rango" => $rango, "premio" => $premio, "foto" => $foto);
 			$con = $this->getConnection()->prepare("INSERT INTO integrante (nombre, rango, premio, foto) values (:nombre, :rango, :premio, :foto)");

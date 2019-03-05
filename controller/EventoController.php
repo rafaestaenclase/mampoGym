@@ -28,6 +28,16 @@
 			$this->view('eventoInsertar', $parameters);
 		}
 
+		function verificarEvento(){
+			$evento = new Evento($this->connection);
+			$nom = $evento->getEventoByNombre($_POST["nombre"]);
+			if ($nom != null) {
+				echo 0;
+			}else{
+				echo 1;
+			}
+		}
+
 		function insertEvento(){
 			$evento = new Evento($this->connection);
 			$archiveTem = $_FILES['archive']['tmp_name'];
@@ -99,6 +109,10 @@
 			$evento->deleteEvento($_GET["idE"]);
 			unlink($name);
 			header('Location: index.php?controller=Evento&action=runEventos');
+		}
+
+		function verificarNombre($dato){
+			echo $dato;
 		}
 
 	}

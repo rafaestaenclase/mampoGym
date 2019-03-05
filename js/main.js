@@ -1,35 +1,30 @@
-function ajax_listen(idForm, target, action){
-    var form_data = "";
-    if (idForm !== "")
-        form_data = $("#"+idForm).serialize();
+$("button[type='submit']").prop('disabled', true);
+if ($("input[name='premio']").val() !== undefined) {
+    $("input[name='nombre']").change(function(){
+        ajax_listen($("input[name='nombre']").val(),"index.php?controller=Integrante&action=verificarIntegrante");
+    });
+}else{
+    $("input[name='nombre']").change(function(){
+        ajax_listen($("input[name='nombre']").val(),"index.php?controller=Evento&action=verificarEvento");
+    });
+}
+
+
+function ajax_listen(data, target){
     $.ajax({
         type: "POST",
         url: target,
-        data: form_data,
+        data: {nombre : data},
         success: function(data){
-            if(action !== "")
-                action(data);
+            if (data == 0) {
+                $("button[type='submit']").prop('disabled', true);
+            }else{
+                $("button[type='submit']").prop('disabled', false);
+            }
+            return data;
         },
         error: function(){}
     });
     console.log(target);
     return false;
-}
-let errorLogin = function (data) {
-
-    if(data == 1) {
-        
-        $("#msg span").html(" Log in con exito");
-        $("#msg").addClass("alert-success");
-        $("#msg i").addClass("fa-check-circle");
-        $("#msg").show();
-        setTimeout(function () {
-            window.location.href = "index.php";
-        }, 1000);
-    }else{
-        $("#msg span").html(" Usuario o contraseña incorrectos");
-        $("#msg").addClass("alert-danger");
-        $("#msg i").addClass("fa-times-circle");
-        $("#msg").show();
-    }
 }

@@ -21,6 +21,16 @@
 			$this->view('integrante', $parameters);
 		}
 
+		function verificarIntegrante(){
+			$integrante = new Integrante($this->connection);
+			$nom = $integrante->getIntegranteByNombre($_POST["nombre"]);
+			if ($nom != null) {
+				echo 0;
+			}else{
+				echo 1;
+			}
+		}
+
 		function insertIntegranteView(){
 			$integrante = new Integrante($this->connection);
 			$parameters = array();

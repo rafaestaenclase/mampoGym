@@ -25,6 +25,15 @@
 	        return $resul;
 		}
 
+		function getEventoByNombre($nombre){
+			$data = array("nombre" => $nombre);
+			$con = $this->getConnection()->prepare("SELECT * FROM evento where nombre= :nombre");
+	        $con->execute($data);
+	        $resul = $con->fetchAll();
+	        $this->conection = null;
+	        return $resul;
+		}
+
 		function insertEvento($nombre, $lugar, $fecha, $foto){
 			$data = array("nombre" => $nombre, "lugar" => $lugar, "fecha" => $fecha, "foto" => $foto);
 			$con = $this->getConnection()->prepare("INSERT INTO evento (nombre, lugar, fecha, foto) values (:nombre, :lugar, :fecha, :foto)");
