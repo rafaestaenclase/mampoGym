@@ -13,21 +13,23 @@
 		{% if hash is defined %}
 		<div class="row justify-content-center">
 			{% for evento in eventos%}
-			<div class="col-10 ml-5 mr-5 mt-3 red">EDITAR<a class="float-right" href="index.php?controller=Evento&action=deleteEvento&idE={{evento.id}}"><span class="fa fa-trash"> Eliminar</span></a></div>
+			<div class="col-10 ml-5 mr-5 mt-3 red">
+				<a class="float-left" href="index.php?controller=Evento&action=runEventos"><span class="fa fa-arrow-left"> Volver</span></a>
+				<a class="float-right" href="index.php?controller=Evento&action=deleteEvento&idE={{evento.id}}"><span class="fa fa-trash"> Eliminar</span></a></div>
 			<form method="POST" action="index.php?controller=Evento&action=updateEvento&idE={{evento.id}}" enctype="multipart/form-data">
 			<div class="card m-3" style="width: 18rem;">
 			  <div class="card-body">
 			    <h5 class="card-title">
 			    	<input type="hidden" name="idE" value="{{evento.id}}">
 			    	<small>Nombre:</small>
-			    	<input type="text" name="nombre" value="{{evento.nombre}}" class="col-10">
+			    	<input type="text" name="nombre" value="{{evento.nombre}}" class="col-10" required>
 			    </h5>
 			    <p class="card-text small">
 			    	<big>Lugar:</big>
-			    	<input type="text" name="lugar" value="{{evento.lugar}}">
+			    	<input type="text" name="lugar" value="{{evento.lugar}}" required>
 			    	<div class="w-100"></div>
 			    	Fecha:
-			    	<input type="text" name="fecha" value="{{evento.fecha}}">
+			    	<input type="text" name="fecha" value="{{evento.fecha}}" required>
 			    </p>
 			  </div>
 			  <img class="card-img-top" src="{{evento.foto}}" alt="Card image cap">

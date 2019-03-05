@@ -11,20 +11,22 @@
 		</style>
 		{% if hash is defined %}
 		<div class="row justify-content-center">
-			<div class="col-10 ml-5 mr-5 mt-3 red">CREAR</div>
+			<div class="col-10 ml-5 mr-5 mt-3 red">
+				<a class="float-left" href="index.php?controller=Integrante&action=runIntegrante"><span class="fa fa-arrow-left"> Volver</span></a>
+			</div>
 			<form method="POST" action="index.php?controller=Integrante&action=insertIntegrante" enctype="multipart/form-data">
 			<div align="center" class="card m-3">
 			  <div class="card-body">
 			  	Imagen:
-			  <input type="file" name="archive">
+			  <input type="file" name="archive" required>
 			    <h6 class="card-title red font-weight-bold">
 			    	<small>Nombre:</small>
-			    	<input type="`text" name="nombre" maxlength="28"></h6>
+			    	<input type="`text" name="nombre" maxlength="28" required></h6>
 			    <p class="card-text small font-weight-bold">
 			    	Rango:
-			    	<input type="text" name="rango" maxlength="20"><br>
+			    	<input type="text" name="rango" maxlength="20" required><br>
 			    	Premio:
-			    	<input type="text" name="premio" maxlength="20"></p>
+			    	<input type="text" name="premio" maxlength="20" required></p>
 			  </div>
 				  		<button type="submit" class="btn btn-block btn-social btn-envelope btn-info">
 						  <span class="fa fa-plus"> Crear</span>

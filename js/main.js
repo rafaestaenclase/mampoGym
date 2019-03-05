@@ -1,4 +1,5 @@
-$("button[type='submit']").prop('disabled', true);
+
+var initialData = $("input[name='nombre']").val();
 if ($("input[name='premio']").val() !== undefined) {
     $("input[name='nombre']").change(function(){
         ajax_listen($("input[name='nombre']").val(),"index.php?controller=Integrante&action=verificarIntegrante");
@@ -16,11 +17,16 @@ function ajax_listen(data, target){
         url: target,
         data: {nombre : data},
         success: function(data){
-            if (data == 0) {
-                $("button[type='submit']").prop('disabled', true);
-            }else{
+            if (initialData == $("input[name='nombre']").val()) {
                 $("button[type='submit']").prop('disabled', false);
+            }else{
+                if (data == 0) {
+                    $("button[type='submit']").prop('disabled', true);
+                }else{
+                    $("button[type='submit']").prop('disabled', false);
+                }
             }
+            
             return data;
         },
         error: function(){}

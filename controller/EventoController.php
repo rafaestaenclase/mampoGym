@@ -67,7 +67,7 @@
 
 			$oldI = $evento->getEventoById($_POST["idE"]);
 			$nameD = $oldI[0]["foto"];
-			$destiny = "";
+			$destiny = $nameD;
 
 
 			if ($_POST["nombre"] !== $oldI[0]["nombre"]) {
@@ -76,6 +76,8 @@
 				rename($oldI[0]["foto"], $destiny);
 				$evento->updateEvento($_POST["idE"], $_POST["nombre"], $_POST["lugar"], $_POST["fecha"], $destiny);
 				$nameD = $destiny;
+			}else{
+				$evento->updateEvento($_POST["idE"], $_POST["nombre"], $_POST["lugar"], $_POST["fecha"], $destiny);
 			}
 
 

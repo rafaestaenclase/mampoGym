@@ -75,6 +75,8 @@
 				rename($oldI[0]["foto"], $destiny);
 				$integrante->updateIntegrante($_POST["idI"], $_POST["nombre"], $_POST["rango"], $_POST["premio"], $destiny);
 				$nameD = $destiny;
+			}else{
+				$integrante->updateIntegrante($_POST["idI"], $_POST["nombre"], $_POST["rango"], $_POST["premio"], $destiny);
 			}
 
 
