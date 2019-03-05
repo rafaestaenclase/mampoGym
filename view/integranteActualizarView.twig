@@ -23,12 +23,12 @@
 			    <h6 class="card-title red font-weight-bold">
 			    	<input type="hidden" name="idI" value="{{i.id}}" required>
 			    	<small>Nombre:</small>
-			    	<input type="`text" name="nombre" value="{{i.nombre}}" required></h6>
+			    	<input type="`text" name="nombre" value="{{i.nombre}}" required class="form-control"></h6>
 			    <p class="card-text small font-weight-bold">
 			    	Rango:
-			    	<input type="text" name="rango" value="{{i.rango}}" required><br>
+			    	<input type="text" name="rango" value="{{i.rango}}" required class="form-control"><br>
 			    	Premio:
-			    	<input type="text" name="premio" value="{{i.premio}}" required></p>
+			    	<input type="text" name="premio" value="{{i.premio}}" required class="form-control"></p>
 			  </div>
 			  {% if hash is defined %}
 				  		<button type="submit" class="btn btn-block btn-social btn-envelope btn-info">
