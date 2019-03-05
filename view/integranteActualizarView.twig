@@ -11,22 +11,22 @@
 		</style>
 		{% if hash is defined %}
 		<div class="row justify-content-center">
-			{% for integrante in equipo%}
-			<div class="col-10 ml-5 mr-5 mt-3 red">EDITAR<a class="float-right" href="index.php?controller=Equipo&action=deleteIntegrante&idI={{integrante.id}}"><span class="fa fa-trash"> Eliminar</span></a></div>
-			<form method="POST" action="index.php?controller=Equipo&action=updateIntegrante" enctype="multipart/form-data">
+			{% for i in integrante%}
+			<div class="col-10 ml-5 mr-5 mt-3 red">EDITAR<a class="float-right" href="index.php?controller=Integrante&action=deleteIntegrante&idI={{i.id}}"><span class="fa fa-trash"> Eliminar</span></a></div>
+			<form method="POST" action="index.php?controller=Integrante&action=updateIntegrante" enctype="multipart/form-data">
 			<div align="center" class="card m-3">
-			  <img class="card-img-top" src="{{integrante.foto}}" alt="No se encontró la imágen">
+			  <img class="card-img-top" src="{{i.foto}}" alt="No se encontró la imágen">
 			  <input type="file" name="archive">
 			  <div class="card-body">
 			    <h6 class="card-title red font-weight-bold">
-			    	<input type="hidden" name="idI" value="{{integrante.id}}">
+			    	<input type="hidden" name="idI" value="{{i.id}}">
 			    	<small>Nombre:</small>
-			    	<input type="`text" name="nombre" value="{{integrante.nombre}}"></h6>
+			    	<input type="`text" name="nombre" value="{{i.nombre}}"></h6>
 			    <p class="card-text small font-weight-bold">
 			    	Rango:
-			    	<input type="text" name="rango" value="{{integrante.rango}}"><br>
+			    	<input type="text" name="rango" value="{{i.rango}}"><br>
 			    	Premio:
-			    	<input type="text" name="premio" value="{{integrante.premio}}"></p>
+			    	<input type="text" name="premio" value="{{i.premio}}"></p>
 			  </div>
 			  {% if hash is defined %}
 				  		<button type="submit" class="btn btn-block btn-social btn-envelope btn-info">

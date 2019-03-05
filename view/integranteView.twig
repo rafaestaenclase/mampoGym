@@ -31,19 +31,19 @@
 
 	<div class="col-10 ml-5 mr-5 mt-3 red">EQUIPO
 	{% if hash is defined %}
-			<a class="float-right" href="index.php?controller=Equipo&action=insertIntegranteView"><span class="fa fa-plus"> Crear integrante</span></a>
+			<a class="float-right" href="index.php?controller=Integrante&action=insertIntegranteView"><span class="fa fa-plus"> Crear integrante</span></a>
 			{% endif %}
 	</div>
 	<div class="row justify-content-center">
-		{% for integrante in equipo%}
+		{% for i in integrante%}
 		<div align="center" class="card m-3">
-		  <img class="card-img-top" src="{{integrante.foto}}" alt="No se encontró la imágen">
+		  <img class="card-img-top" src="{{i.foto}}" alt="No se encontró la imágen">
 		  <div class="card-body">
-		    <h6 class="card-title red font-weight-bold">{{integrante.nombre}}</h6>
-		    <p class="card-text small font-weight-bold">{{integrante.rango}}<br>{{integrante.premio}}</p>
+		    <h6 class="card-title red font-weight-bold">{{i.nombre}}</h6>
+		    <p class="card-text small font-weight-bold">{{i.rango}}<br>{{i.premio}}</p>
 		  </div>
 		  {% if hash is defined %}
-			  		<a href="index.php?controller=Equipo&action=updateIntegranteView&idI={{integrante.id}}" class="btn btn-block btn-social btn-envelope btn-info">
+			  		<a href="index.php?controller=Integrante&action=updateIntegranteView&idI={{i.id}}" class="btn btn-block btn-social btn-envelope btn-info">
 					    <span class="fa fa-pencil">Editar</span>
 					</a>
 		  		{% endif %}
